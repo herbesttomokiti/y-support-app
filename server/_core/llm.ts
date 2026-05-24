@@ -219,7 +219,7 @@ const resolveApiUrl = () => {
 
 const resolveApiKey = () => ENV.geminiApiKey || ENV.openAiApiKey;
 
-const resolveModel = () => ENV.geminiApiKey ? "gemini-2.0-flash" : "gpt-4o";
+const resolveModel = () => ENV.geminiApiKey ? "models/gemini-2.5-flash" : "gpt-4o";
 
 const assertApiKey = () => {
   if (!ENV.geminiApiKey && !ENV.openAiApiKey) {
