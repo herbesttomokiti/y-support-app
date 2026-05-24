@@ -209,12 +209,21 @@ const normalizeToolChoice = (
   return toolChoice;
 };
 
-const resolveApiUrl = () =>
-  `${ENV.openAiBaseUrl.replace(/\/$/, "")}/v1/chat/completions`;
+// Gemini優先、なければOpenAI
+const resolveApiUrl = () => {
+  if (ENV.geminiApiKey) {
+    return "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+  }
+  return `${ENV.openAiBaseUrl.replace(/\/$/, "")}/v1/chat/completions`;
+};
+
+const resolveApiKey = () => ENV.geminiApiKey || ENV.openAiApiKey;
+
+const resolveModel = () => ENV.geminiApiKey ? "gemini-2.0-flash" : "gpt-4o";
 
 const assertApiKey = () => {
-  if (!ENV.openAiApiKey) {
-    throw new Error("OPENAI_API_KEY is not configured");
+  if (!ENV.geminiApiKey && !ENV.openAiApiKey) {
+    throw new Error("GEMINI_API_KEY または OPENAI_API_KEY が設定されていません");
   }
 };
 
@@ -278,7 +287,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   } = params;
 
   const payload: Record<string, unknown> = {
-    model: "gpt-4o",
+    model: resolveModel(),
     messages: messages.map(normalizeMessage),
   };
 
@@ -311,7 +320,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      authorization: `Bearer ${ENV.openAiApiKey}`,
+      authorization: `Bearer ${resolveApiKey()}`,
     },
     body: JSON.stringify(payload),
   });
