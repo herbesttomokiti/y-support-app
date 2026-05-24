@@ -57,7 +57,7 @@
   /* Neumorphic surface — same base color for bg, card, sidebar */
   --background: #e0e8ec;
   --foreground: #1c2c34;
-  --card: #e0e8ec;
+  --card: #ffffff;
   --card-foreground: #1c2c34;
   --popover: #eef3f5;
   --popover-foreground: #1c2c34;
