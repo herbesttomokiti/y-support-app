@@ -1,9 +1,27 @@
 import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { ENV } from "./_core/env";
+import fs from "fs";
+import path from "path";
+
+// ── ローカルストレージ（R2未設定時のフォールバック）─────────────────────────
+
+const UPLOADS_DIR = path.resolve(process.cwd(), "uploads");
+
+function ensureUploadsDir() {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+}
+
+function isR2Configured(): boolean {
+  return !!(ENV.r2AccountId && ENV.r2AccessKeyId && ENV.r2SecretAccessKey && ENV.r2Bucket);
+}
+
+// ── R2クライアント ─────────────────────────────────────────────────────────
 
 function getR2Client() {
-  if (!ENV.r2AccountId || !ENV.r2AccessKeyId || !ENV.r2SecretAccessKey || !ENV.r2Bucket) {
+  if (!isR2Configured()) {
     throw new Error(
       "Storage config missing: set R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET",
     );
@@ -29,15 +47,27 @@ function appendHashSuffix(relKey: string): string {
   return `${relKey.slice(0, lastDot)}_${hash}${relKey.slice(lastDot)}`;
 }
 
+// ── パブリックAPI ──────────────────────────────────────────────────────────
+
 export async function storagePut(
   relKey: string,
   data: Buffer | Uint8Array | string,
   contentType = "application/octet-stream",
 ): Promise<{ key: string; url: string }> {
-  const client = getR2Client();
   const key = appendHashSuffix(normalizeKey(relKey));
   const body = typeof data === "string" ? Buffer.from(data) : Buffer.from(data);
 
+  if (!isR2Configured()) {
+    // ローカルディスクに保存
+    ensureUploadsDir();
+    const filePath = path.join(UPLOADS_DIR, key.replace(/\//g, "_"));
+    fs.writeFileSync(filePath, body);
+    const fileName = path.basename(filePath);
+    return { key, url: `/uploads/${fileName}` };
+  }
+
+  // R2に保存
+  const client = getR2Client();
   await client.send(
     new PutObjectCommand({
       Bucket: ENV.r2Bucket,
@@ -56,7 +86,13 @@ export async function storageGet(relKey: string): Promise<{ key: string; url: st
 }
 
 export async function storageGetSignedUrl(relKey: string): Promise<string> {
-  // If a public R2 URL is configured, use it directly without signing
+  if (!isR2Configured()) {
+    // ローカルの場合はそのままパスを返す
+    const key = normalizeKey(relKey);
+    const fileName = key.replace(/\//g, "_");
+    return `/uploads/${fileName}`;
+  }
+
   if (ENV.r2PublicUrl) {
     const key = normalizeKey(relKey);
     return `${ENV.r2PublicUrl.replace(/\/$/, "")}/${key}`;
