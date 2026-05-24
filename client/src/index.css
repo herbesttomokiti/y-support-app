@@ -55,7 +55,7 @@
   --brand-ghost: #e7f8f7;
 
   /* Neumorphic surface — same base color for bg, card, sidebar */
-  --background: #e0e8ec;
+  --background: #eef2f3;
   --foreground: #1c2c34;
   --card: #ffffff;
   --card-foreground: #1c2c34;
@@ -80,7 +80,7 @@
   --chart-5: #abe0db;
 
   /* Sidebar: same neumorphic base */
-  --sidebar: #e0e8ec;
+  --sidebar: #eef2f3;
   --sidebar-foreground: #1c2c34;
   --sidebar-primary: var(--brand);
   --sidebar-primary-foreground: #ffffff;
