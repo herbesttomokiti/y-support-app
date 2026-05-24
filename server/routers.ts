@@ -198,6 +198,8 @@ const llmRouter = router({
       })
     )
     .mutation(async ({ input }) => {
+      console.log("[upload] start", input.filename, input.mimeType, input.base64.length);
+      try {
       const EXCEL_MIMES = [
         "application/vnd.ms-excel",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -238,7 +240,12 @@ const llmRouter = router({
 
       const key = `instructions/${Date.now()}-${input.filename.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
       const result = await storagePut(key, buffer, input.mimeType);
+      console.log("[upload] success", result.url);
       return { key: result.key, url: result.url, mimeType: input.mimeType, extractedText: undefined };
+      } catch (err) {
+        console.error("[upload] ERROR:", err);
+        throw err;
+      }
     }),
 
   decomposeTask: protectedProcedure
