@@ -77,7 +77,10 @@ export async function getUserById(id: number) {
 export async function getUserByEmail(email: string) {
   const db = await getDb();
   if (!db) return undefined;
-  const result = await db.select().from(users).where(eq(users.email, email)).orderBy(sql`FIELD(role, 'admin', 'user')`).limit(1);
+  // ログインはadminのみ対象（staffも同じemailを共有しているため）
+  const result = await db.select().from(users)
+    .where(and(eq(users.email, email), eq(users.role, "admin")))
+    .limit(1);
   return result[0];
 }
 
