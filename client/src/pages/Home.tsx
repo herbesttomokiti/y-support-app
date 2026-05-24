@@ -61,7 +61,7 @@ export default function Home() {
             <p className="text-muted-foreground text-sm">管理者ログイン</p>
           </div>
 
-          <Card className="rounded-2xl border-border shadow-sm">
+          <Card className="rounded-2xl">
             <CardHeader className="pb-4">
               <CardTitle className="text-base text-center">ログイン</CardTitle>
             </CardHeader>
@@ -130,7 +130,7 @@ export default function Home() {
       <div className="w-full max-w-sm space-y-10">
         {/* ロゴ・タイトル */}
         <div className="text-center space-y-3">
-          <div className="w-24 h-24 rounded-3xl bg-primary/10 flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-24 h-24 rounded-3xl bg-background flex items-center justify-center mx-auto neu">
             <ClipboardList className="w-12 h-12 text-primary" />
           </div>
           <h1 className="text-3xl font-bold text-foreground tracking-tight">he/rbest</h1>
@@ -141,7 +141,7 @@ export default function Home() {
         <div className="space-y-4">
           {/* 管理者ボタン：ログイン済みなら直接管理者メニューへ、未ログインならログイン画面へ */}
           <button
-            className="w-full group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98]"
+            className="w-full group relative overflow-hidden rounded-2xl bg-background neu hover:neu-lg transition-all duration-200 active:scale-[0.98]"
             onClick={() => {
               if (user) {
                 navigate("/admin");
@@ -165,7 +165,7 @@ export default function Home() {
 
           {/* 作業者ボタン */}
           <button
-            className="w-full group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98]"
+            className="w-full group relative overflow-hidden rounded-2xl bg-background neu hover:neu-lg transition-all duration-200 active:scale-[0.98]"
             onClick={() => navigate("/tasks")}
           >
             <div className="flex items-center gap-4 px-6 py-5">

@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b px-4 py-4">
+      <div className="sticky top-0 z-10 bg-background px-4 py-4 neu-sm" style={{borderRadius: 0}}>
         <div className="flex items-center gap-3 max-w-3xl mx-auto">
           <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
             <ArrowLeft className="w-5 h-5" />
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
             { label: "完了", value: completedCount, color: "text-green-600" },
             { label: "アクティブ", value: activeSessionCount, color: "text-amber-600" },
           ].map((item) => (
-            <Card key={item.label} className="rounded-2xl border-border">
+            <Card key={item.label} className="rounded-2xl border-0">
               <CardContent className="p-4 text-center">
                 <p className={`text-3xl font-bold ${item.color}`}>{item.value}</p>
                 <p className="text-xs text-muted-foreground mt-1">{item.label}</p>
@@ -75,7 +75,7 @@ export default function AdminDashboard() {
         {/* メニュー */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <Card
-            className="rounded-2xl border-border cursor-pointer hover:shadow-md transition-shadow"
+            className="rounded-2xl border-0 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => navigate("/admin/tasks/create")}
           >
             <CardContent className="p-5 flex items-center gap-4">
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
           </Card>
 
           <Card
-            className="rounded-2xl border-border cursor-pointer hover:shadow-md transition-shadow"
+            className="rounded-2xl border-0 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => navigate("/admin/progress")}
           >
             <CardContent className="p-5 flex items-center gap-4">
@@ -105,7 +105,7 @@ export default function AdminDashboard() {
           </Card>
 
           <Card
-            className="rounded-2xl border-border cursor-pointer hover:shadow-md transition-shadow"
+            className="rounded-2xl border-0 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => navigate("/admin/templates")}
           >
             <CardContent className="p-5 flex items-center gap-4">
@@ -120,7 +120,7 @@ export default function AdminDashboard() {
           </Card>
 
           <Card
-            className="rounded-2xl border-border cursor-pointer hover:shadow-md transition-shadow"
+            className="rounded-2xl border-0 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => navigate("/tasks")}
           >
             <CardContent className="p-5 flex items-center gap-4">
@@ -135,7 +135,7 @@ export default function AdminDashboard() {
           </Card>
 
           <Card
-            className="rounded-2xl border-border cursor-pointer hover:shadow-md transition-shadow"
+            className="rounded-2xl border-0 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => navigate("/admin/records")}
           >
             <CardContent className="p-5 flex items-center gap-4">
@@ -155,7 +155,7 @@ export default function AdminDashboard() {
           <div className="space-y-3">
             <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide px-1">最近の作業カード</h2>
             {tasks.slice(0, 10).map((task) => (
-              <Card key={task.id} className="rounded-xl border-border">
+              <Card key={task.id} className="rounded-xl border-0">
                 <CardContent className="p-4 flex items-center justify-between gap-2">
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm truncate">{task.name}</p>
