@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -39,48 +40,96 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* he/rbest brand */
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
 }
 
 :root {
-  --radius: 0.75rem;
-  /* 落ち着いた青緑系テーマ - Y君が安心して使えるデザイン */
-  --background: oklch(0.98 0.005 200);
-  --foreground: oklch(0.15 0.02 220);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 220);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.02 220);
-  --primary: oklch(0.52 0.14 220);
-  --primary-foreground: oklch(0.98 0.005 200);
-  --secondary: oklch(0.93 0.02 200);
-  --secondary-foreground: oklch(0.3 0.05 220);
-  --muted: oklch(0.94 0.01 200);
-  --muted-foreground: oklch(0.5 0.03 220);
-  --accent: oklch(0.88 0.06 160);
-  --accent-foreground: oklch(0.2 0.08 160);
-  --destructive: oklch(0.58 0.22 25);
-  --border: oklch(0.88 0.01 200);
-  --input: oklch(0.88 0.01 200);
-  --ring: oklch(0.52 0.14 220);
-  /* panic button - warm orange */
-  --panic: oklch(0.72 0.18 55);
-  --panic-foreground: oklch(0.15 0.05 55);
-  /* success green */
-  --success: oklch(0.62 0.18 145);
-  --success-foreground: oklch(0.98 0.01 145);
-  --chart-1: oklch(0.52 0.14 220);
-  --chart-2: oklch(0.62 0.18 145);
-  --chart-3: oklch(0.72 0.18 55);
-  --chart-4: oklch(0.58 0.22 25);
-  --chart-5: oklch(0.65 0.15 280);
-  --sidebar: oklch(0.95 0.01 200);
-  --sidebar-foreground: oklch(0.15 0.02 220);
-  --sidebar-primary: oklch(0.52 0.14 220);
-  --sidebar-primary-foreground: oklch(0.98 0.005 200);
-  --sidebar-accent: oklch(0.88 0.06 160);
-  --sidebar-accent-foreground: oklch(0.2 0.08 160);
-  --sidebar-border: oklch(0.88 0.01 200);
-  --sidebar-ring: oklch(0.52 0.14 220);
+  --radius: 1rem;
+
+  /* he/rbest brand: Tiffany blue palette */
+  --brand: #0ABAB5;
+  --brand-soft: #81D8D0;
+  --brand-deep: #088a86;
+  --brand-ghost: #e7f8f7;
+
+  /* Neumorphic surface (slightly cool off-white) */
+  --background: #eef2f3;
+  --foreground: #1f2a2e;
+  --card: #f4f7f8;
+  --card-foreground: #1f2a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1f2a2e;
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: #e0e6e8;
+  --secondary-foreground: #1f2a2e;
+  --muted: #e7ecee;
+  --muted-foreground: #6d7e84;
+  --accent: var(--brand-soft);
+  --accent-foreground: #1f2a2e;
+  --destructive: #e0524f;
+  --border: #d8dee1;
+  --input: #d8dee1;
+  --ring: var(--brand);
+  --chart-1: var(--brand);
+  --chart-2: var(--brand-soft);
+  --chart-3: #88c0bb;
+  --chart-4: #4ec0bb;
+  --chart-5: #abe0db;
+
+  /* Sidebar: light neumorphic */
+  --sidebar: #eef2f3;
+  --sidebar-foreground: #1f2a2e;
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0e6e8;
+  --sidebar-accent-foreground: #1f2a2e;
+  --sidebar-border: #d8dee1;
+  --sidebar-ring: var(--brand);
+
+  /* Neumorphic shadow tokens */
+  --neu-shadow-light: 255, 255, 255;
+  --neu-shadow-dark: 174, 192, 200;
+
+  /* y-support 固有カラー */
+  --panic: #f97316;
+  --panic-foreground: #ffffff;
+  --success: #22c55e;
+  --success-foreground: #ffffff;
+}
+
+.dark {
+  --background: #0f1719;
+  --foreground: #e6edef;
+  --card: #15201f;
+  --card-foreground: #e6edef;
+  --popover: #15201f;
+  --popover-foreground: #e6edef;
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: #1a2725;
+  --secondary-foreground: #e6edef;
+  --muted: #1a2725;
+  --muted-foreground: #8aa2a6;
+  --accent: var(--brand-soft);
+  --accent-foreground: #0f1719;
+  --destructive: #e0524f;
+  --border: #213130;
+  --input: #213130;
+  --ring: var(--brand);
+  --sidebar: #0f1719;
+  --sidebar-foreground: #e6edef;
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a2725;
+  --sidebar-accent-foreground: #e6edef;
+  --sidebar-border: #213130;
+  --sidebar-ring: var(--brand);
+
+  --neu-shadow-light: 40, 56, 60;
+  --neu-shadow-dark: 0, 0, 0;
 }
 
 @layer base {
@@ -88,12 +137,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: "Noto Sans JP", sans-serif;
+    @apply bg-background text-foreground font-sans;
+    font-family: "Noto Sans JP", "Inter", sans-serif;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
-  /* iPad向け：タッチ操作を最適化 */
   button, [role="button"] {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
@@ -101,25 +149,66 @@
 }
 
 @layer utilities {
-  .container {
-    @apply mx-auto px-4;
-    max-width: 1280px;
+  /* Neumorphic raised surface */
+  .neu {
+    box-shadow:
+      6px 6px 14px rgba(var(--neu-shadow-dark), 0.18),
+      -6px -6px 14px rgba(var(--neu-shadow-light), 0.85);
   }
-  .flex {
-    min-width: 0;
-    min-height: 0;
+  .neu-sm {
+    box-shadow:
+      3px 3px 8px rgba(var(--neu-shadow-dark), 0.18),
+      -3px -3px 8px rgba(var(--neu-shadow-light), 0.85);
   }
-  /* パニックボタン専用スタイル */
+  .neu-lg {
+    box-shadow:
+      10px 10px 24px rgba(var(--neu-shadow-dark), 0.18),
+      -10px -10px 24px rgba(var(--neu-shadow-light), 0.85);
+  }
+
+  /* Inset / pressed surface */
+  .neu-inset {
+    box-shadow:
+      inset 3px 3px 6px rgba(var(--neu-shadow-dark), 0.20),
+      inset -3px -3px 6px rgba(var(--neu-shadow-light), 0.90);
+  }
+  .neu-inset-sm {
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--neu-shadow-dark), 0.20),
+      inset -2px -2px 4px rgba(var(--neu-shadow-light), 0.90);
+  }
+
+  /* Brand button */
+  .btn-brand {
+    background-color: var(--brand);
+    color: #ffffff;
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+  .btn-brand:hover {
+    background-color: var(--brand-deep);
+  }
+  .btn-brand:active {
+    transform: translateY(1px);
+  }
+
+  /* Brand tints */
+  .bg-brand-soft { background-color: var(--brand-soft); }
+  .bg-brand-ghost { background-color: var(--brand-ghost); }
+  .text-brand { color: var(--brand); }
+  .text-brand-deep { color: var(--brand-deep); }
+  .ring-brand { --tw-ring-color: var(--brand); }
+
+  /* y-support 固有 */
   .btn-panic {
     background-color: var(--panic);
     color: var(--panic-foreground);
   }
-  /* 完了ボタン */
   .btn-success {
     background-color: var(--success);
     color: var(--success-foreground);
   }
-  /* ステップカードのアニメーション */
+
+  /* ステップカードアニメーション */
   .step-enter {
     animation: stepEnter 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
@@ -133,9 +222,19 @@
       transform: translateY(0) scale(1);
     }
   }
+
   /* キャンバスエリア */
   .canvas-area {
     touch-action: none;
     cursor: crosshair;
+  }
+
+  .container {
+    @apply mx-auto px-4;
+    max-width: 1280px;
+  }
+  .flex {
+    min-width: 0;
+    min-height: 0;
   }
 }
